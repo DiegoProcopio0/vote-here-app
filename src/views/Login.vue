@@ -25,7 +25,7 @@
       <InputText
         id="email1"
         type="email"
-        placeholder="Endereço de Email"
+        placeholder="Endereço de email"
         class="w-full mb-3"
       />
 

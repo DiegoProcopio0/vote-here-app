@@ -25,14 +25,14 @@
       <InputText
         id="nome"
         type="text"
-        placeholder="Node de Usuario"
+        placeholder="Node de usuário"
         class="w-full mb-3"
       />
       <label for="email1" class="block text-900 font-medium mb-2">Email</label>
       <InputText
         id="email1"
         type="email"
-        placeholder="Endereço de Email"
+        placeholder="Endereço de email"
         class="w-full mb-3"
       />
 
