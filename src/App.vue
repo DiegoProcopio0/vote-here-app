@@ -1,7 +1,12 @@
 <script setup lang="ts">
-  import HelloWorld from './components/Login.vue'
+  import Header from './components/Header.vue'
 </script>
 
 <template>
-  <HelloWorld />
+  <div class="h-full">
+    <Header />
+    <main>
+      <RouterView />
+    </main>
+  </div>
 </template>

@@ -2,7 +2,7 @@
 
 <template>
   <div
-    class="surface-card p-4 shadow-2 border-round w-1/2 h-screen flex flex-col justify-center items-center mx-auto"
+    class="surface-card p-4 shadow-2 border-round w-1/2 h-full flex flex-col justify-center items-center mx-auto"
   >
     <div class="text-center mb-5">
       <img
