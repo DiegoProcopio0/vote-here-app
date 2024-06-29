@@ -27,3 +27,8 @@ body,
 #app {
   @apply h-screen;
 }
+
+.custom-height {
+  @apply h-screen;
+  height: calc(100vh - 65px);
+}

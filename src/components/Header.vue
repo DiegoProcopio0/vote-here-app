@@ -1,45 +1,34 @@
 <script setup lang="ts">
-  import { useRouter } from 'vue-router'
+  import NavItem from './NavItem.vue'
 
-  const router = useRouter()
-
-  const routerToPush = (route: string) => {
-    router.push(`${route}`)
-  }
+  const linkItems = [
+    { label: 'Pagina Inicial', route: '/' },
+    { label: 'Meu Perfil', route: '/profile' },
+    { label: 'Criar votação', route: '/create-poll' },
+  ]
 </script>
 
 <template>
   <header class="bg-zinc-900 p-4 flex justify-between items-center">
     <nav>
-      <ul class="flex gap-2 items-center">
-        <li
-          class="p-2 cursor-pointer hover:bg-gray-800 transition-all ease-out delay-75 rounded"
-        >
-          <a @click="routerToPush('/')">Pagina Inicial</a>
-        </li>
-        <li
-          class="p-2 cursor-pointer hover:bg-gray-800 transition-all ease-out delay-75 rounded"
-        >
-          <a @click="routerToPush('/login')">Meu Perfil</a>
-        </li>
-        <li
-          class="p-2 cursor-pointer hover:bg-gray-800 transition-all ease-out delay-75 rounded"
-        >
-          <a @click="routerToPush('/login')">Criar votação</a>
-        </li>
+      <ul class="flex flex-col gap-2 items-start sm:flex-row sm:items-center">
+        <NavItem v-for="linkItem in linkItems" routePush="`${linkItem.link}`">{{
+          linkItem.label
+        }}</NavItem>
       </ul>
     </nav>
 
-    <div>
+    <div class="flex flex-col gap-2 items-end sm:flex-row sm:items-center">
       <Button
         label="Registrar"
-        class="p-button-outlined mr-2"
+        class="p-button-outlined"
         icon="pi pi-user"
+        @click="$router.push('/register')"
       ></Button>
       <Button
         label="Login"
         icon="pi pi-user"
-        @click="routerToPush('/login')"
+        @click="$router.push('/login')"
       ></Button>
     </div>
   </header>

@@ -1,12 +1,21 @@
-import { createRouter, createWebHistory, Router } from 'vue-router'
+import {
+  createRouter,
+  createWebHistory,
+  Router,
+  RouteRecordRaw,
+} from 'vue-router'
 
 import LoginView from '../views/Login.vue'
+import RegisterView from '../views/Register.vue'
 import HomeView from '../views/Home.vue'
+import NotFoundView from '../views/NotFound.vue'
 
-const routes = [
-  { path: '/', component: HomeView },
-  { path: '/login', component: LoginView },
-  // { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
+const routes: RouteRecordRaw[] = [
+  { path: '/', name: 'HomeView', component: HomeView },
+  { path: '/login', name: 'LoginView', component: LoginView },
+  { path: '/register', name: 'RegisterView', component: RegisterView },
+  { path: '/404', name: 'NotFound', component: NotFoundView },
+  { path: '/:catchAll(.*)*', redirect: '/404' },
 ]
 
 export const router: Router = createRouter({
