@@ -19,10 +19,6 @@
   --overlay-background: #ffffff;
 }
 
-html {
-  font-size: 14px;
-}
-
 body,
 #app {
   @apply h-screen;
@@ -31,4 +27,18 @@ body,
 .custom-height {
   @apply h-screen;
   height: calc(100vh - 65px);
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #374151;
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #10b981;
+  border-radius: 14px;
 }
