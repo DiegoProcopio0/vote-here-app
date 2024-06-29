@@ -3,10 +3,7 @@
     routePush: {
       type: String,
       required: true,
-      validator(value: string): boolean {
-        if (value[0] !== '/') return false
-        return true
-      },
+      default: '/',
     },
   })
 </script>

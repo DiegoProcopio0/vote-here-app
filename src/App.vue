@@ -8,5 +8,6 @@
     <main>
       <RouterView />
     </main>
+    <Toast position="bottom-right" group="br" />
   </div>
 </template>

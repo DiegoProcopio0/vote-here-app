@@ -1,4 +1,25 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import { useToast } from 'primevue/usetoast'
+  import { useRouter } from 'vue-router'
+
+  const router = useRouter()
+  const toast = useToast()
+
+  const showBottomRight = () => {
+    toast.add({
+      severity: 'success',
+      summary: 'Usuário Logado com sucesso',
+      detail: 'Agora é possível criar enquetes',
+      group: 'br',
+      life: 3000,
+    })
+  }
+
+  const authUser = () => {
+    showBottomRight()
+    router.push('/')
+  }
+</script>
 
 <template>
   <div
@@ -38,7 +59,12 @@
         placeholder="Senha"
         class="w-full mb-3"
       />
-      <Button label="Login" icon="pi pi-user" class="w-full"></Button>
+      <Button
+        @click="authUser"
+        label="Login"
+        icon="pi pi-user"
+        class="w-full"
+      ></Button>
     </div>
   </div>
 </template>

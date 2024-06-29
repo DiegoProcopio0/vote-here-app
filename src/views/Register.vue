@@ -1,4 +1,25 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import { useToast } from 'primevue/usetoast'
+  import { useRouter } from 'vue-router'
+
+  const router = useRouter()
+  const toast = useToast()
+
+  const showBottomRight = () => {
+    toast.add({
+      severity: 'success',
+      summary: 'Usuário cadastrado com sucesso',
+      detail: 'Faça login para criar enquetes',
+      group: 'br',
+      life: 3000,
+    })
+  }
+
+  const registerUser = () => {
+    showBottomRight()
+    router.push('/login')
+  }
+</script>
 
 <template>
   <div
@@ -45,7 +66,12 @@
         placeholder="Senha"
         class="w-full mb-3"
       />
-      <Button label="Cadastrar" icon="pi pi-user" class="w-full"></Button>
+      <Button
+        @click="registerUser"
+        label="Cadastrar"
+        icon="pi pi-user"
+        class="w-full"
+      ></Button>
     </div>
   </div>
 </template>
