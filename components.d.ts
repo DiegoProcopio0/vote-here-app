@@ -10,6 +10,8 @@ declare module 'vue' {
     Button: typeof import('primevue/button')['default']
     copy: typeof import('./src/components/Header copy.vue')['default']
     Header: typeof import('./src/components/Header.vue')['default']
+    IconField: typeof import('primevue/iconfield')['default']
+    InputIcon: typeof import('primevue/inputicon')['default']
     InputText: typeof import('primevue/inputtext')['default']
     NavItem: typeof import('./src/components/NavItem.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

@@ -12,7 +12,7 @@
   <header class="bg-zinc-900 p-4 flex justify-between items-center">
     <nav>
       <ul class="flex flex-col gap-2 items-start sm:flex-row sm:items-center">
-        <NavItem v-for="linkItem in linkItems" routePush="`${linkItem.link}`">{{
+        <NavItem v-for="linkItem in linkItems" :routePush="linkItem.route">{{
           linkItem.label
         }}</NavItem>
       </ul>
