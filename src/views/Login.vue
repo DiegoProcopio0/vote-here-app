@@ -1,6 +1,33 @@
 <script setup lang="ts">
   import { useToast } from 'primevue/usetoast'
   import { useRouter } from 'vue-router'
+  import { useField, useForm } from 'vee-validate'
+  import { toTypedSchema } from '@vee-validate/zod'
+  import { registerSchema } from '../schemas'
+  import { ref } from 'vue'
+  import Input from '../components/Input.vue'
+
+  const validationSchema = toTypedSchema(registerSchema.omit({ nome: true }))
+  const { handleSubmit, errors } = useForm({ validationSchema })
+
+  const { value: email } = useField('email')
+  const { value: senha } = useField('senha')
+
+  let loading = ref(false)
+
+  const verifyIfExistError = () => {
+    if (Object.keys(errors).length > 0) {
+      loading.value = true
+    }
+    loading.value = false
+  }
+
+  const onSubmit = handleSubmit((values) => {
+    verifyIfExistError()
+    if (loading.value) return
+    showMessageAndRedirect()
+    alert(JSON.stringify(values, null, 2))
+  })
 
   const router = useRouter()
   const toast = useToast()
@@ -15,17 +42,17 @@
     })
   }
 
-  const authUser = () => {
+  const showMessageAndRedirect = () => {
     showBottomRight()
     router.push('/')
   }
 </script>
 
 <template>
-  <div
+  <main
     class="surface-card p-4 shadow-2 border-round w-full custom-height flex flex-col justify-center items-center mx-auto"
   >
-    <div class="text-center mb-5">
+    <header class="text-center mb-5">
       <img
         src="../assets/hyper.svg"
         alt="Image"
@@ -39,32 +66,32 @@
         class="font-medium no-underline ml-2 text-blue-500 cursor-pointer"
         >Crie agora!</a
       >
-    </div>
+    </header>
 
-    <div>
-      <label for="email1" class="block text-900 font-medium mb-2">Email</label>
-      <InputText
-        id="email1"
+    <form @submit="onSubmit" class="md:w-1/2 w-full max-w-xl">
+      <Input
         type="email"
+        description="Email"
         placeholder="Endereço de email"
-        class="w-full mb-3"
+        id="email"
+        v-model="email"
+        :error="errors.email"
       />
-
-      <label for="password1" class="block text-900 font-medium mb-2"
-        >Senha</label
-      >
-      <InputText
-        id="password1"
+      <Input
         type="password"
+        description="Senha"
         placeholder="Senha"
-        class="w-full mb-3"
+        id="password"
+        v-model="senha"
+        :error="errors.senha"
       />
       <Button
-        @click="authUser"
+        @click="onSubmit"
         label="Login"
         icon="pi pi-user"
-        class="w-full"
+        class="w-full mt-2"
+        :disabled="Object.keys(errors).length > 0"
       ></Button>
-    </div>
-  </div>
+    </form>
+  </main>
 </template>

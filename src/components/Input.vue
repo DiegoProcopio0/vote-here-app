@@ -51,6 +51,6 @@
       :value="modelValue"
       @input="updateValue"
     />
-    <p class="text-red-500">{{ error }}</p>
+    <p class="text-red-500 text-sm font-medium">{{ error }}</p>
   </div>
 </template>
