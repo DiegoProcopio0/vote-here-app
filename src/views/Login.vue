@@ -6,6 +6,9 @@
   import { registerSchema } from '../schemas'
   import { ref } from 'vue'
   import Input from '../components/Input.vue'
+  import { useLoginStore } from '../stores'
+
+  const { signIn } = useLoginStore()
 
   const validationSchema = toTypedSchema(registerSchema.omit({ nome: true }))
   const { handleSubmit, errors } = useForm({ validationSchema })
@@ -22,11 +25,30 @@
     loading.value = false
   }
 
-  const onSubmit = handleSubmit((values) => {
+  const showErrors = (errors: string[]) => {
+    errors.map((error) => {
+      toast.add({
+        severity: 'error',
+        summary: 'Erro ao autenticar Usuário!',
+        detail: error,
+        group: 'br',
+        life: 9000,
+      })
+    })
+  }
+
+  const onSubmit = handleSubmit(async ({ email, senha }) => {
     verifyIfExistError()
     if (loading.value) return
+
+    const result = await signIn(email, senha)
+
+    if (result.errors) {
+      showErrors(result.errors)
+      return
+    }
+
     showMessageAndRedirect()
-    alert(JSON.stringify(values, null, 2))
   })
 
   const router = useRouter()
