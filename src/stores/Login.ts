@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
-import instance from '../services/api'
+import { ResponseApi } from '../@types'
+// import instance from '../services/api'
 
 interface State {
   loginId: string
@@ -9,32 +10,45 @@ export const useLoginStore = defineStore('login', {
   state: (): State => ({
     loginId: 'loginId',
   }),
-  getters: {
-    getLoginId: (store) => {
-      return store.loginId
-    },
-  },
+
+  getters: {},
+
   actions: {
+    // async signIn(
+    //   email: string,
+    //   senha: string,
+    // ): Promise<{ accessToken?: string; errors?: string[] }> {
+    //   const result = await instance.request({
+    //     url: '/entrar',
+    //     method: 'POST',
+    //     data: {
+    //       email,
+    //       senha,
+    //     },
+    //   })
+
+    //   if (result.data && result.data.accessToken) {
+    //     this.setLoginID(result.data.accessToken)
+    //   }
+
+    //   return {
+    //     ...result.data,
+    //     status: result.status,
+    //   }
+    // },
+
     async signIn(
       email: string,
       senha: string,
-    ): Promise<{ accessToken?: string; errors?: string[] }> {
-      const result = await instance.request({
-        url: '/entrar',
-        method: 'POST',
-        data: {
-          email,
-          senha,
-        },
-      })
+    ): ResponseApi<{ accessToken: string }> {
+      this.setLoginID('loginId')
 
-      if (result.data && result.data.accessToken) {
-        this.setLoginID(result.data.accessToken)
-      }
+      console.log('email', email)
+      console.log(' senha', senha)
 
       return {
-        ...result.data,
-        status: result.status,
+        ...{ accessToken: 'accessToken' },
+        status: 200,
       }
     },
 

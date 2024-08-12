@@ -13,8 +13,8 @@
   const validationSchema = toTypedSchema(registerSchema.omit({ nome: true }))
   const { handleSubmit, errors } = useForm({ validationSchema })
 
-  const { value: email } = useField('email')
-  const { value: senha } = useField('senha')
+  const { value: email } = useField<string>('email')
+  const { value: senha } = useField<string>('senha')
 
   let loading = ref(false)
 
